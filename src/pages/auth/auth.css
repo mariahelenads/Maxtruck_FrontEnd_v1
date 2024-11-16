@@ -1,0 +1,66 @@
+.auth-card {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    min-width: 280px;
+    text-align: center;
+    transition: width 0.3s ease;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+button {
+    background-color: #85CEC3;
+    border: 1px solid #000000;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.auth-link {
+    color: #000000;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+}
+
+.auth-link:hover {
+    color: #85CEC3;
+}
+
+@media (max-width: 600px) {
+    .auth-card {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .auth-card {
+        max-width: 500px;
+    }
+}

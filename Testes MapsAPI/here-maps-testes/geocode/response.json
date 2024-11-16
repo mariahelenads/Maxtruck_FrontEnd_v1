@@ -1,0 +1,73 @@
+{
+    "items": [
+        {
+            "title": "Avenida Marginal Pinheiros, Alto de Pinheiros, São Paulo - SP, 05321-010, Brasil",
+            "id": "here:af:streetsection:sTZEtOTE9YXpXbjGkmzrUA",
+            "resultType": "street",
+            "address": {
+                "label": "Avenida Marginal Pinheiros, Alto de Pinheiros, São Paulo - SP, 05321-010, Brasil",
+                "countryCode": "BRA",
+                "countryName": "Brasil",
+                "stateCode": "SP",
+                "state": "São Paulo",
+                "city": "São Paulo",
+                "district": "Alto de Pinheiros",
+                "street": "Avenida Marginal Pinheiros",
+                "postalCode": "05321-010"
+            },
+            "position": {
+                "lat": -23.55286,
+                "lng": -46.7247
+            },
+            "mapView": {
+                "west": -46.74842,
+                "south": -23.64462,
+                "east": -46.69048,
+                "north": -23.52939
+            },
+            "scoring": {
+                "queryScore": 1.0,
+                "fieldScore": {
+                    "city": 1.0,
+                    "streets": [
+                        0.9
+                    ]
+                }
+            }
+        },
+        {
+            "title": "Avenida Marginal Pinheiros, Industrial Remédios, Osasco - SP, Brasil",
+            "id": "here:af:street:PAXid-CIlo74KMkXRbh8OC",
+            "resultType": "street",
+            "address": {
+                "label": "Avenida Marginal Pinheiros, Industrial Remédios, Osasco - SP, Brasil",
+                "countryCode": "BRA",
+                "countryName": "Brasil",
+                "stateCode": "SP",
+                "state": "São Paulo",
+                "city": "Osasco",
+                "district": "Industrial Remédios",
+                "street": "Avenida Marginal Pinheiros"
+            },
+            "position": {
+                "lat": -23.52332,
+                "lng": -46.74899
+            },
+            "mapView": {
+                "west": -46.74979,
+                "south": -23.52494,
+                "east": -46.74821,
+                "north": -23.52168
+            },
+            "scoring": {
+                "queryScore": 1.0,
+                "fieldScore": {
+                    "state": 1.0,
+                    "streets": [
+                        0.9
+                    ]
+                }
+            }
+        }
+    ]
+}

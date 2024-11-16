@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Here Maps - Rota de Caminhões</title>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <style>
+        #mapContainer {
+            width: 100%;
+            height: 500px;
+        }
+        #controls {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <label for="heightInput">Altura do Caminhão (em metros):</label>
+        <input type="number" id="heightInput" step="0.1" value="4.5">
+        <label for="weightInput">Peso do Caminhão (em kg):</label>
+        <input type="number" id="weightInput" step="100" value="10000">
+        <button onclick="calcularRota()">Calcular Rota</button>
+    </div>
+    <div id="mapContainer"></div>
+    <script>
+        // Aqui começa o script JavaScript para mostrar o mapa
+        const platform = new H.service.Platform({
+            apikey: 'pqhAtgrZSMecF1iUoFrK3LC6ozqT0uX27GLU2cOuyKI'
+        });
+
+        // Definindo as camadas padrão para o mapa
+        const defaultLayers = platform.createDefaultLayers();
+
+        // Inicializando o mapa e definindo o ponto central e o nível de zoom
+        const map = new H.Map(
+            document.getElementById('mapContainer'),
+            defaultLayers.vector.normal.map,
+            {
+                zoom: 12,
+                center: { lat: -23.5505, lng: -46.6333 } // Coordenadas de São Paulo
+            }
+        );
+
+        // Adicionando interações no mapa (zoom, arrastar, etc.)
+        const mapEvents = new H.mapevents.MapEvents(map);
+        const behavior = new H.mapevents.Behavior(mapEvents);
+
+        // Adicionando controles de UI, como zoom
+        const ui = H.ui.UI.createDefault(map, defaultLayers);
+
+        // Função para calcular e desenhar a rota
+        function calcularRota() {
+            const routingService = platform.getRoutingService(null, 8);
+            const altura = parseFloat(document.getElementById('heightInput').value);
+            const peso = parseFloat(document.getElementById('weightInput').value);
+
+            const routingParameters = {
+                transportMode: 'truck',
+                origin: '-23.5505,-46.6333', // São Paulo (Origem)
+                destination: '-23.5631,-46.6544', // Outro ponto em São Paulo (Destino)
+                truck: { height: altura, weight: peso },
+                return: 'polyline'
+            };
+
+            routingService.calculateRoute(routingParameters, 
+                (result) => {
+                    if (result.routes.length) {
+                        const route = result.routes[0];
+                        const routeShape = route.sections[0].polyline;
+
+                        // Convertendo os pontos da rota em uma série de coordenadas
+                        const linestring = H.geo.LineString.fromFlexiblePolyline(routeShape);
+
+                        // Criando uma rota visual para desenhar no mapa
+                        const routeLine = new H.map.Polyline(linestring, {
+                            style: { strokeColor: 'blue', lineWidth: 5 }
+                        });
+
+                        // Limpando rotas anteriores
+                        map.removeObjects(map.getObjects());
+
+                        // Adicionando a rota no mapa
+                        map.addObject(routeLine);
+
+                        // Centralizando o mapa na rota
+                        map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
+                    }
+                }, 
+                (error) => {
+                    console.error('Erro ao calcular a rota:', error);
+                }
+            );
+        }
+    </script>
+</body>
+</html>

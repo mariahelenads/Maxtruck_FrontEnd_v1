@@ -1,0 +1,10 @@
+api-key: pqhAtgrZSMecF1iUoFrK3LC6ozqT0uX27GLU2cOuyKI
+app-id: kTRgXa3AD3YvgG6WdO2x
+
+
+=== segunda conta ===
+Jose@27112021
+api-key: KzJwxn4fXhBgG3pKHuSjVILKqqQBa6dqldJ683xYKpo
+app-id: oVi6jWpioUO43GLc34x5
+
+https://router.hereapi.com/v8/routes?transportMode=truck&origin=52.5308,13.3847&destination=52.5264,13.3686&return=summary&apiKey=pqhAtgrZSMecF1iUoFrK3LC6ozqT0uX27GLU2cOuyKI
